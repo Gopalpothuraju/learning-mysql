@@ -1,0 +1,61 @@
+JOINS
+=======
+To fetch relevant data from multiple tables joins are used.
+3 types of joins are
+1.simple join    --->equi join and non-equi join
+2.outer join     --->left outer join ,right outer join and full outer join
+3.self join
+
+simple join is also called as inner join.
+
+if u do not use any symbol in any 2 tables is called cross join and it is called as cartisien product
+eq:
+select * from emp,dept;
+
+equi join
+=========
+we use equals to(=) symbol.
+joining 2 tables using equals to(=) symbol.
+
+
+eq:
+select empno,ename,sal,job,dname,loc from emp,dept where emp.deptno=dept.deptno;
+
+
+if i want to print deptno from about table
+select empno,ename,sal,job,dname,loc,emp.deptno from emp,dept where emp.deptno=dept.deptno;
+
+Alias names to the tables
+-------------------------
+select empno,ename,sal,job,dname,loc,e.deptno from emp e,dept d where e.deptno=d.deptno;
+
+Advantages
+----------
+manage table name length
+faster retrieval 
+we can identify from which table we can to take easily.
+ambiguity is remove
+
+select e.empno,e.ename,e.sal,e.job,d.dname,d.loc,e.deptno from emp e,dept d where e.deptno=d.deptno;
+
+
+NATURAL JOIN
+------------
+
+natural join also equi join
+select * from emp natural join dept;
+advantages
+----------
+no need to worry about columns in the table.
+
+
+
+
+Non-equi join
+-------------
+
+joining multiple tables using other than equals to(=) operator.
+
+eq:
+select e.empno,e.ename,s.grade,e.sal from emp e,salgrade s where e.sal between s.losal and hisal;
+

@@ -1,0 +1,133 @@
+establishing relationship b/w tables:
+------------------------------------
+-->A table that contains primary key and maintains unique data is called master table or parent table.
+-->A table that refers to master table is called child table.
+-->A column from child table which refers to master tables primary key column is called foreign key.
+
+foreign key
+========
+MASTER TABLE
+============
+create table registration(reg_no int(5) primary key,st_name varchar(10),doj date,cource varchar(10));
+
+CHILD TABLE
+===========
+create table attendence(regno int(5) references registration(reg_no),cod date,status char(1));
+
+reg_no is primary key & regno is foreign key.
+
+insertions into master table:
+------------------------------
+insert into registration values(10,'abc','2018-08-02','java');
+insert into registration values(11,'xyz','2018-08-02','oracle');
+insert into registration values(12,'ramu','2018-08-02','oracle');
+insert into registration values(13,'rani','2018-08-02','.net');
+insert into registration values(14,'raju','2018-08-02','.net');
+
+insertions into child table:
+---------------------------
+insert into attendence values(10,'2018-08-13','p');
+insert into attendence values(11,'2018-08-13','a');
+insert into attendence values(12,'2018-08-13','p');
+insert into attendence values(11,'2018-08-13','p');
+				-->foreign key is not unique it will repeat any times.
+insert into attendence values(13,'2018-08-13','p');
+insert into attendence values(16,'2018-08-13','p');
+			-->integrity constraint (Scott.sys_coo3996) violated -parentkey not found.
+
+
+
+Deletion
+-------
+When the corresponding child records exits then maaster tables data cant be deleted.
+first we should delete child table data then we can delete master table data.
+
+
+
+Some constraints can be mentioned after defining all the columns by refering to the corresponding column these constraints are called as table level constraints.
+Constraint that can be mentioned along with the column are called as column level constraints.
+
+
+Composite constraints
+=====================
+
+create table reservation(tr_no varchar(10),pname varchar(10),src_stn varchar(10),dst_stn varchar(10),fare int(5),seat_no int(5),ch_no varchar(5),primary key(seat_no,ch_no));
+
+insert into reservation values(17201,'gopal','nsp','sec',350,2,'s1');
+insert into reservation values(17201,'mani','nsp','sec',350,2,'s1');
+						-->dublicate entry '2-s1' for  key primary
+insert into reservation values(17201,'mani','nsp','sec',350,70,'s1');
+
+
+print today's date
+-----------------
+select current_date() from dual;
+
+
+print current time
+-----------------
+select current_time() from dual;
+
+
+
+
+SUB-QUERY
+=========
+
+Query inside a query is called sub query.
+
+syntax:
+select query[cond](select query);
+---------------    ------------
+ outer query        inner query
+
+sub query execution:
+------------------
+inner query executes first based on the result given by inner query outer query executes.
+
+
+select dname from dept where deptno=(select deptno from emp where empno=7499);
+
+
+select * from emp where sal(select sal from emp where empno=7654);
+
+select * from emp where job=(select job from emp where enmae='ALLEN');
+
+
+
+Ideally sub query is expected to return only one value but if query demands or requires multiple values then we can handle using "IN,ANY,ALL" operators.
+
+
+IN,ALL,ANY operator
+--------------
+select * from emp where job IN (select job from emp where deptno=30);
+
+	>ANY--->minimum value(will take min value for comparision)
+		select * from emp where sal>ANY(select sal from emp where job='MANAGER');
+
+	>ALL--->maximum value(will take max value for comparision)
+		select * from emp where sal>ALL(select sal from emp where job='MANAGER');
+
+	<ANY--->maximum value(will take max value for comparison)--quite opposite to >ANY.
+		select * from emp where sal<ANY(select sal from emp where job='MANAGER');
+
+	<ALL--->minimum value(will take min value for comparision)--quite opposite to >ALL.
+		select * from emp where sal<ALL(select sal from emp where job='MANAGER');
+
+
+
+select max(SAL) from emp;--->maximum salary
+
+select max(SAL) from emp where sal<(select max(sal) from emp);-->second maximum salary
+
+select max(SAL) from emp where sal<(select max(sal) from emp where sal<(select max(sal) from emp));-->third maximum salary
+
+
+how do we get Nth maximum salary
+-----------------------------
+using corelated sub query
+
+CORELATED SUB QUERY
+-------------------
+first ,outer query executes based on that output inner query executes and again based on that outer query executes.
+

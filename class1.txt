@@ -1,0 +1,158 @@
+Storage system:
+--------------
+2 types:
+
+1.file system
+2.data base system
+
+
+
+Storage systems:
+
+there are 2 types of storage systems.1)file system 2)data base system.
+
+1)file system:
+
+Disadvantages with file system
+	1)Does not stored in formated way
+	2)Complexity in modifications 
+	3)Data redundancy cannot be avoided 
+	4)Limit in size
+
+Data:
+-----
+Data is collection of raw facts.
+
+Information:
+-----------
+it is formated data.
+
+The system that maintain or manages data is called data base system or data base managent system(DBMS).
+It stores data in tabular format.
+
+
+
+				student==>entity
+			
+			st.no	st.name		st.marks==>attributes
+			 101	abc		250
+			 102    xyz		300 ====>tuple
+
+
+
+Dr.E.F.Codd as proposed 12 rules which are called as codd rules
+A system will be called as data base system it would satisfy min of 5 codd rules.
+
+
+
+DBMS maintains hole data at same level to overcomne this HDBMS is introduced.(Hirerical Data Base Management System)
+
+
+
+
+
+
+							    1==>root node
+						2			3
+					4	5	6	7	8	9==>child node
+							10			11
+
+
+NDBMS provides centralized data base(Network DBMS).
+
+					   c --	S
+					      /	 \		
+					     c	 c
+S--server & c--client
+
+RDBMS (Relational DBMS).
+6 codd rules are satisfied when it is RDBMS.
+
+ORDBMS or OORDBMS(Object oriented RDBMS) .
+
+
+
+				TOOLS
+				=====
+
+1.Dbase
+2.Paradox
+3.
+4.MS-Access	----> satisfy 5 codd rules
+5.Ingrees	----> satisfy 6 codd rules
+6.Post grace	----> satisfy 6 codd rules
+7.MS-SQL Server ----> satisfy 9 - 10 codd rules
+8.mMyspl 	----> satisfy 6 codd rules
+9.DB2		----> satisfy 11 codd rules
+10.Sybase	----> satisfy 11 1/2 codd rules
+11.Oracle	----> satisfy 12 codd rules
+
+
+eveery data base have 2structures
+
+SQL
+Programing
+	--Oracle/my-SQL it is called as PL/SQL
+	--My-SQL server it is called as T-SQl
+	--Sybase/db2 it is called programing SQL
+
+
+
+
+				My-SQL
+				======
+
+SQL --structured query language
+
+5 types of commands to work with SQL
+
+1)DDL--Data Definition Language
+------
+In DDL there are 5 commands create,alter,drop,truncate,rename
+2)DML --Data Manuplation Language
+-----
+In DML there are 3 commands insert ,delete,update
+
+3)DRL --Data Retrival Language
+-----
+In DRL there are 1 command select
+
+4)TCL--Transition Control Language
+-----
+In TCL there are 3 commands commit,rollback,savepoint
+
+5)DCL--Data control language
+-----
+In DCL there are 2 commands grant,revoke
+
+
+
+
+create databse in mysql
+
+syntax:
+create database <database name>;
+
+eq:
+create database unicsol;
+
+use <database name>;
+eq;use unicsol;
+ it will mandatory for starting a database.	
+
+
+copy all the defualt tables from ms file
+
+show tables;
+ 	if u see all the tables present in database.it is not case senitive
+
+
+
+To retrive data :
+
+	>select column name1,column name2,-.... from table name;
+
+Do u know columns in presence of table is command describe
+then syntax: desc table name;
+
+

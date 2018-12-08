@@ -1,0 +1,173 @@
+OUTER JOIN
+==========
+It is used to fetch unmatched or non maching data along with matching data.
+
+left outer join
+--------------
+we will get extra data from left hand side table in the query
+select * from emp left outer join dept using(deptno);
+
+
+Right outer join
+--------------
+we will get extra data from right hand side table in the query
+select * from emp right outer join dept using(deptno);
+
+full outer join does not support in my sql
+
+
+SELF JOIN
+==========
+Joining the same table itself is self join. 
+
+select m.empno,m.job,e.empno,e.job from emp e,emp m where e.empno=m.mgr;
+To display sub ordinate first nd superior next.
+
+select m.empno,m.job,e.empno,e.job from emp e,emp m where m.empno=e.mgr;
+To display superior first and then sub ordinate next.
+
+
+
+				PL/SQL
+====================================================================
+
+Procedural language extension to SQL.
+Advantages:
+----------
+SQL queries are compiled only in first attempt from next attempt only values are substituted.
+Complexity is reduced.
+Reusability.
+
+Stored procedures:
+-----------------
+These are named PL/SQL blocks.THese can be called anywhere just by refering their name
+THese are 2 types
+1.procedures
+2.functions
+
+1.procedure
+----------
+
+syntax:
+
+	create or replace procedure <pro.name> (parameters)
+      as/is
+	  variable declaration;
+      begin
+	  excutable statements;
+      end <pro.name>;
+/
+
+
+paramters and variable declarations are optional.
+
+procedural perameters are 3 types
+1.in
+2.out
+3.in out
+
+1.IN
+----
+It accepts values from users and sends into procedures body for processing.
+2.OUT
+-----
+It holds value that is processed in body and returns through a variable.
+
+3.in out
+-------
+It is both the jobs.
+
+
+delimiter is used tio change ; to any other operator like $,#(delimiter $)
+eq:
+Without perameters and variable declaration
+-------------------------------------------
+delimiter $   
+create or replace procedure p1
+is
+begin
+select * from emp;
+end p1
+$
+
+
+
+To execute procedures in cmd using exec pro.name(parameters);
+
+eq:  exec p1
+
+
+With parameters
+---------------
+
+create or replace procedure change_name(eno int,name varchar)
+is 
+begin
+ update emp setr ename=name where empno=eno;
+end
+$
+
+>exec change_name(7566,'ABCD');
+
+
+using out perameters
+---------------------
+delimiter $ 
+create or replace procedure getDetails(rno int,name out varchar,esal out int)
+is 
+begin
+select ename,sal into name,esal from emp where empno=eno;
+end
+$
+
+>var n varchar
+>var s int
+
+	> exec getDetails(7566,:n,:s);
+	  >print n s
+
+
+
+
+Diff b/w procedures and functions
+----------------------------------
+
+procedure
+1.Can perform DML operations directly.
+2.Returns value optionally but can return multiple values.
+
+function
+1.Can't perform DML operations directly such functions need to be called in other block. 
+2.Must return a value and should be single only.
+
+
+
+
+FUNTIONS
+========
+syntax
+------
+
+create or replace function <funname>(prams) return <datatype>
+as
+	variable declaration;
+begin
+	statements;
+return <value>;
+end <fun.name>;
+/
+
+
+
+example
+------
+create or replace function getJob(eno int) return varchar
+is
+	ejob varchar(10);
+begin
+	select job into ejob from emp where empno=eno;
+return ejob;
+end;
+
+execution
+>select getJob(7566) from dual;

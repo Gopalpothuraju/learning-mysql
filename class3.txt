@@ -1,0 +1,122 @@
+sum of the sal with each depts.
+we can use 'group by clause'. it is used to group the similar values.
+	   -----------------	
+select deptno,sum(sal)  from emp group by deptno;
+
+
+select job,sum(sal)  from emp group by job;
+
+select deptno,count(*) from emp group by deptno;
+
+select job,count(*) from emp group by job;
+
+HAVING CLAUSE
+having clause is used when group functions are used in conditions.
+
+select deptno,sum(sal) from emp group by deptno having sum(sal)>9000;
+
+ALIAS
+====
+It is used to display temporary column name for exact column name
+alias name is written in double qoutes " ".
+
+select deptno,sum(sal) "Total sal" from emp group by deptno having sum(sal)>9000;
+select deptno,min(sal) "Minimum" max(sal) "maximum" avg(sal) "average",sum(sal) "Total sal",count(*) "NO.of emp" from emp group by deptno;
+
+
+
+Data types
+==========
+
+int==>interger values(smaller values)
+bigint==>integer values(larger values)
+varchar==>character with variables
+char==>characters
+date==>date format(yyyy-mm-dd)
+lob==>images to insert
+
+Creation of table
+=================
+
+syntax
+--------
+
+create table <tablename>(colname datatype size,colname datatype size ,....);
+
+create-->used to create table
+here we can use 250 tables
+
+
+conventions to create table:
+---------------------------
+1.Table name mush start with alphabet.
+2.table name can't have spaces and special characters other than" _ and $".
+3.doublicate names can't be allocated.
+
+
+create table student (sno int(3),sname varchar(10),marks int(4));
+
+
+Insert
+======
+
+To insert data in table
+
+insert into tablename values (co1/val , co2/val,co3/val);
+
+insert into student values(1,'gopal',80);
+
+
+insert into student values(2,'sai',70);
+
+insert into student values(3,'vinay',90);
+
+insertion into few columns
+=========================
+syntax 
+insert into tablename (colnamemcolname,...)  values(val1,val2);
+
+ex
+insert into student(sno,sname) values(4,'adi');
+
+UPDATE
+======
+it is used to modify updated data
+syntax:
+update tablename set colname=value,colname2=value,.....[where condition];
+
+ex:
+update student set marks=150 where sno=2;
+
+
+update from student marks=100 where marks is null;
+
+for NULL 'is' operatoer is used.
+
+
+Delete
+=====
+
+used to delete data
+syntax: delete from tablename [where condition];
+
+delete from student where sno=1;
+
+**************all DDL commands are auto commit commands************
+
+
+
+ALTER
+======
+It is used to modify structure of the table.
+
+increasing/decreasing the columns width
+
+syntax:
+alter table tablename modify colname datatype size;
+
+ex:
+alter table student modify sno int(5);
+
+when the col width has to be decrease such col should not consist any data.
+
